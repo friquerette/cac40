@@ -12,7 +12,7 @@ public class Quotation {
     @SerializedName("Xperiod")
     private float xPeriod;
     @SerializedName("QuoteTab")
-    ArrayList<QuoteTab> quoteTab = new ArrayList<>();
+    private ArrayList<QuoteTab> quoteTab = new ArrayList<>();
 
 
     // Getter Methods
@@ -40,5 +40,13 @@ public class Quotation {
 
     public void setxPeriod(float Xperiod) {
         this.xPeriod = Xperiod;
+    }
+
+    public ArrayList<QuoteTab> getQuoteTab() {
+        return quoteTab;
+    }
+
+    public void setQuoteTab(ArrayList<QuoteTab> quoteTab) {
+        this.quoteTab = quoteTab;
     }
 }

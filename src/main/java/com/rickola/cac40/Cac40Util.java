@@ -8,8 +8,8 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Cac40Util {
-    public static String directoryDestination = "C:\\temp\\CAC40\\";
-    public static String urlTemplate = "https://www.boursorama.com/bourse/action/graph/ws/GetTicksEOD?symbol=%s&length=3650&period=0&guid=";
+    public static String directoryDestination = PropertiesUtils.getDirectoryTest();
+    public static String urlTemplate = PropertiesUtils.getMonth1();
     public static String UTF8 = StandardCharsets.UTF_8.toString();
 
     public static void saveUrlToFile(String url, String fileName) throws IOException {

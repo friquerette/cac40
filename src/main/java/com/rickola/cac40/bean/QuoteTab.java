@@ -18,7 +18,7 @@ public class QuoteTab {
     private String close;
     @SerializedName("v")
     private String volume;
-    public LocalDate date;
+    private LocalDate date;
 
     public String getDay() {
         if(date == null || "".equals(date)) {

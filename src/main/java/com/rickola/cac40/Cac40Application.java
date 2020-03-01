@@ -3,6 +3,7 @@ package com.rickola.cac40;
 
 import java.util.Arrays;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Cac40Application {
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(Cac40Application.class, args);
@@ -21,7 +23,6 @@ public class Cac40Application {
 		return args -> {
 			System.out.println("Let's inspect the beans provided by Spring Boot:");
 			System.out.println(ctx.getEnvironment().getProperty("directoryDestination"));
-
 
 			String[] beanNames = ctx.getBeanDefinitionNames();
 			Arrays.sort(beanNames);

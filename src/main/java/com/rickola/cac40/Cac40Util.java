@@ -8,9 +8,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Cac40Util {
-    public static String directoryDestination = PropertiesUtils.getDirectoryTest();
-    public static String urlTemplate = PropertiesUtils.getMonth1();
-    public static String UTF8 = StandardCharsets.UTF_8.toString();
+    private static String UTF8 = StandardCharsets.UTF_8.toString();
 
     public static void saveUrlToFile(String url, String fileName) throws IOException {
         Files.copy(new URL(url).openStream(), Paths.get(fileName));
@@ -20,10 +18,13 @@ public class Cac40Util {
         return new Scanner(new URL(url).openStream(), UTF8).useDelimiter("\\A").next();
     }
 
-    public static String readStringFromURL(String url) throws IOException {
+    public static String readStringFromURL(String url) {
         try (Scanner scanner = new Scanner(new URL(url).openStream(), UTF8)) {
             scanner.useDelimiter("\\A");
             return scanner.hasNext() ? scanner.next() : "";
+        } catch (Exception e){
+            System.err.println(("failed to read" + e.getMessage()));
+            return "[ERROR]";
         }
     }
 }

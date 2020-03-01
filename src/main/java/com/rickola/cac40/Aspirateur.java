@@ -1,26 +1,29 @@
 package com.rickola.cac40;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Aspirateur {
 
-    public static void main(String[] args) throws IOException {
-        // Arrays.asList(Cac40Enum.AI, Cac40Enum.DG, Cac40Enum.PSP5).stream().map(Cac40Enum::getCode).forEach(Aspirateur::extract);
-        System.out.println("user.dir: "+ PropertiesUtils.getDirectoryDestination());
-        ;
-    }
-
-
-    private static void extract(String code) {
+    public static void saveToFile(String code) {
         try {
-            String url = String.format(Cac40Util.urlTemplate, code);
-            String fileName = Cac40Util.directoryDestination + "\\" + code + ".json";
-            String out = Cac40Util.readStringFromURL("http://monip.org");
-
+            String url = String.format(PropertiesUtils.getDay1(), code);
+            String fileName = PropertiesUtils.getDirectoryDestination() + code + ".json";
             Cac40Util.saveUrlToFile(url, fileName);
             // double delay = Math.random() * 10000;
             System.out.println(code + "\t" + url);
-            Thread.sleep(7);
+            Thread.sleep(7000);
+        } catch (Exception e) {
+            throw new RuntimeException("Error on " + code + " " + e.getMessage());
+        }
+    }
+
+    public static String readValues(String code) {
+        try {
+            String url = String.format(PropertiesUtils.getDay1(), code);
+            String fileName = PropertiesUtils.getDirectoryDestination() + code + ".json";
+            Thread.sleep(7000);
+            return Cac40Util.readStringFromURL(url);
         } catch (Exception e) {
             throw new RuntimeException("Error on " + code + " " + e.getMessage());
         }

@@ -11,7 +11,7 @@ public class PropertiesUtils {
             prop = new Properties();
             try (InputStream input = new PropertiesUtils().getClass().getClassLoader().getResourceAsStream("application.properties")) {
                 prop.load(input);
-                prop.forEach((key, value) -> System.out.println("Key : " + key + ", Value : " + value));
+                // prop.forEach((key, value) -> System.out.println("Key : " + key + ", Value : " + value));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -25,6 +25,14 @@ public class PropertiesUtils {
 
     public static String getDirectoryTest() {
         return getPropertiesFile().getProperty("directoryTest");
+    }
+
+    public static String getDay5() {
+        return getPropertiesFile().getProperty("day5");
+    }
+
+    public static String getDay1() {
+        return getPropertiesFile().getProperty("day1");
     }
 
     public static String getMonth1() {

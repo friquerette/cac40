@@ -1,5 +1,6 @@
 package com.rickola.cac40.bean;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDate;
@@ -18,18 +19,19 @@ public class QuoteTab {
     private String close;
     @SerializedName("v")
     private String volume;
-    private LocalDate date;
+    @Expose(serialize = false, deserialize = false)
+    private String date;
 
     public String getDay() {
         if(date == null || "".equals(date)) {
-            this.date = LocalDate.parse("1970-01-01").plusDays(Long.parseLong(day));
+            this.date = LocalDate.parse("1970-01-01").plusDays(Long.parseLong(day.substring(0, 5))).toString();
         }
         return day;
     }
 
     public void setDay(String day) {
         if(date == null || "".equals(date)) {
-            this.date = LocalDate.parse("1970-01-01").plusDays(Long.parseLong(day));
+            this.date = LocalDate.parse("1970-01-01").plusDays(Long.parseLong(day.substring(0, 5))).toString();
         }
         this.day = day;
     }
@@ -74,10 +76,23 @@ public class QuoteTab {
         this.volume = volume;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         if(date == null || "".equals(date)) {
-            this.date = LocalDate.parse("1970-01-01").plusDays(Long.parseLong(day));
+            this.date = LocalDate.parse("1970-01-01").plusDays(Long.parseLong(day.substring(0, 5))).toString();
         }
         return date;
+    }
+
+    @Override
+    public String toString() {
+        return "QuoteTab{" +
+                "date=" + date +
+                ", day='" + day + '\'' +
+                ", open='" + open + '\'' +
+                ", high='" + high + '\'' +
+                ", low='" + low + '\'' +
+                ", close='" + close + '\'' +
+                ", volume='" + volume + '\''  +
+                '}';
     }
 }
